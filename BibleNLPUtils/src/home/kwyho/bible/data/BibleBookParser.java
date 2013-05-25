@@ -61,12 +61,4 @@ public class BibleBookParser {
 		reader.close();
 		return book;
 	}
-	
-	public static void main(String[] args) throws IOException {
-		BibleBookParser parser = new BibleBookParser();
-		BibleBook book = parser.parseBook("/Users/hok1/Documents/KJVBible/AV1611text/Genesis.txt", "ge");
-		
-		System.out.println(book.getChapter(23).getVerse(2).getPassage());
-	}
-	
 }
