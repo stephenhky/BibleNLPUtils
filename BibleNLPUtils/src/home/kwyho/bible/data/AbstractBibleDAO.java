@@ -5,7 +5,17 @@ import java.util.HashMap;
 public abstract class AbstractBibleDAO {
 	protected String translation;
 	protected String translationAbbreviation;
+	protected String booksFolder;
 	
+	public AbstractBibleDAO(String translation, String translationAbbreviation,
+			String booksFolder) {
+		this.translation = translation;
+		this.translationAbbreviation = translationAbbreviation;
+		this.booksFolder = booksFolder;
+		bibleBookHashTable = new HashMap<String, BibleBook>();
+		initializeBible();
+	}
+
 	protected HashMap<String, BibleBook> bibleBookHashTable;
 
 	public String getTranslation() {
