@@ -10,14 +10,14 @@ import java.util.regex.Pattern;
 
 public class BibleBookParser {
 	
-	private Pattern chapterIndicator = Pattern.compile("CHAPTER [1-9][0-9]|CHAPTER [0-9]");
+	private Pattern chapterIndicator = Pattern.compile("CHAPTER [1-9][0-9]|CHAPTER [0-9]|PSALM [1-9][1-9][0-9]|PSALM [1-9][0-9]|PSALM [0-9]");
 	
-	public BibleBook parseBook(String filename, String abbreviation) throws IOException {
+	public BibleBook parseBook(String filename, String abbr) throws IOException {
 		File inFile = new File(filename);
 		FileReader fr = new FileReader(inFile);
 		BufferedReader reader = new BufferedReader(fr);
 	
-		BibleBook book = new BibleBook(abbreviation);
+		BibleBook book = new BibleBook(abbr);
 		List<BibleChapter> chapters = book.getChapters();
 		
 		// Skip the first two lines
@@ -30,26 +30,31 @@ public class BibleBookParser {
 		while ((line = reader.readLine()) != null) {
 			String trimmedLine = line.trim();
 			Matcher matcher = chapterIndicator.matcher(trimmedLine);
+			int firstSpacePos = trimmedLine.indexOf(' ');  // first space
+			int verseNo = 0;
+			try {
+				verseNo = Integer.parseInt(trimmedLine.substring(0, firstSpacePos));
+			} catch (NumberFormatException e) {
+				verseNo = 0;
+			} catch (StringIndexOutOfBoundsException e1) {
+				verseNo = 0;
+			}
 			if (matcher.find()) {
-				// System.out.println(matcher.group());
-				chapterIdx = Integer.parseInt(trimmedLine.substring(8));
+				chapterIdx = Integer.parseInt(trimmedLine.substring(firstSpacePos+1));
 				BibleChapter chapter = new BibleChapter();
 				chapters.add(chapter);
 				verseIdx = 0;
-				System.out.println("Chapter "+chapterIdx);
 			} else if (trimmedLine.equals("")) {
 				// System.out.println("---");
-			} else {
+			} else if (verseNo > 0) {
 				BibleChapter chapter = book.getChapter(chapterIdx);
-				int verseNoEndPos = trimmedLine.indexOf(' ');
-				int verseNo = Integer.parseInt(trimmedLine.substring(0, verseNoEndPos));
 				verseIdx++;
 				if (verseNo > verseIdx) {
 					verseIdx = verseNo;
 				}
-				String passage = trimmedLine.substring(verseNoEndPos).trim();
+				String passage = trimmedLine.substring(firstSpacePos).trim();
 				chapter.getVerses().add(new BibleVerse(verseIdx, passage));
-				System.out.println(verseIdx+" : "+passage);
+				System.out.println(abbr+" "+chapterIdx+" : "+verseIdx+" : "+passage);
 			}
 		}
 		
