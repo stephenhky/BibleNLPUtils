@@ -1,34 +1,33 @@
 package home.kwyho.bible.data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class AbstractBibleDAO {
-	private String translation;
-	private String translationAbbreviation;
+	protected String translation;
+	protected String translationAbbreviation;
 	
-	protected ArrayList<BibleBook> books;
-	private HashMap<String, Integer> bookToIdx;
+	protected HashMap<String, BibleBook> bibleBookHashTable;
+	
+	public AbstractBibleDAO() {
+		bibleBookHashTable = new HashMap<String, BibleBook>();
+		initializeBible();
+	}
 
 	public String getTranslation() {
 		return translation;
 	}
 
-	public void setTranslation(String translation) {
-		this.translation = translation;
-	}
-
 	public String getTranslationAbbreviation() {
 		return translationAbbreviation;
 	}
-
-	public void setTranslationAbbreviation(String translationAbbreviation) {
-		this.translationAbbreviation = translationAbbreviation;
+	
+	public BibleBook getBook(String abbr) {
+		return bibleBookHashTable.get(abbr);
 	}
 	
-	protected void initializeBible() {
-		books = new ArrayList<BibleBook>();
-		bookToIdx = new HashMap<String, Integer>();
-		
+	public HashMap<String, BibleBook> getBibleBookHashTable() {
+		return bibleBookHashTable;
 	}
+
+	abstract protected void initializeBible();
 }

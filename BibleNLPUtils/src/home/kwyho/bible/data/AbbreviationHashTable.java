@@ -26,7 +26,7 @@ public class AbbreviationHashTable {
 		hashTable.put("ne", "Nehemiah");
 		hashTable.put("est", "Esther");
 		hashTable.put("job", "Job");
-		hashTable.put("ps", "Psalm");
+		hashTable.put("ps", "Psalms");
 		hashTable.put("pr", "Proverbs");
 		hashTable.put("ec", "Ecclesiastes");
 		hashTable.put("so", "Song of Songs");
@@ -83,6 +83,10 @@ public class AbbreviationHashTable {
 			bookName = hashTable.get(abbreviation);
 		}
 		return bookName;
+	}
+
+	public static Map<String, String> getHashTable() {
+		return hashTable;
 	}
 	
 }
