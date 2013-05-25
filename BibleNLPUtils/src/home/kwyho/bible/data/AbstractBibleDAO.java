@@ -7,11 +7,6 @@ public abstract class AbstractBibleDAO {
 	protected String translationAbbreviation;
 	
 	protected HashMap<String, BibleBook> bibleBookHashTable;
-	
-	public AbstractBibleDAO() {
-		bibleBookHashTable = new HashMap<String, BibleBook>();
-		initializeBible();
-	}
 
 	public String getTranslation() {
 		return translation;

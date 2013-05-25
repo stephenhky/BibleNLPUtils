@@ -54,7 +54,7 @@ public class BibleBookParser {
 				}
 				String passage = trimmedLine.substring(firstSpacePos).trim();
 				chapter.getVerses().add(new BibleVerse(verseIdx, passage));
-				System.out.println(abbr+" "+chapterIdx+" : "+verseIdx+" : "+passage);
+				//System.out.println(abbr+" "+chapterIdx+" : "+verseIdx+" : "+passage);
 			}
 		}
 		

@@ -22,7 +22,7 @@ public class AbbreviationHashTable {
 		hashTable.put("2ki", "2 Kings");
 		hashTable.put("1ch", "1 Chronicles");
 		hashTable.put("2ch", "2 Chronicles");
-		hashTable.put("ezr", "Ezrah");
+		hashTable.put("ezr", "Ezra");
 		hashTable.put("ne", "Nehemiah");
 		hashTable.put("est", "Esther");
 		hashTable.put("job", "Job");

@@ -26,7 +26,7 @@ public class KJVBibleDAO extends AbstractBibleDAO {
 		BibleBookParser parser = new BibleBookParser();
 		
 		for (String abbr: abbrSet) {
-			String bookName = AbbreviationHashTable.retrieveBookName(abbr);
+			String bookName = (!abbr.equals("so"))?AbbreviationHashTable.retrieveBookName(abbr):"Song of Solomon";
 			String bookFileName = bookName.replace(" ", "")+".txt";
 			String bookFilePath = booksFolder + "/" + bookFileName;
 			System.out.println("===="+bookName+"====");
