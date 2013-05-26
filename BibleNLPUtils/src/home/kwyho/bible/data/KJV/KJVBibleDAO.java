@@ -10,8 +10,12 @@ import java.util.Set;
 
 public class KJVBibleDAO extends AbstractBibleDAO {
 
+	public KJVBibleDAO(String booksFolder) {
+		super("King James Version", "KJV", booksFolder);
+	}
+	
 	public KJVBibleDAO() {
-		super("King James Version", "KJV", "/Users/hok1/Documents/KJVBible/AV1611text/");
+		this("");
 	}
 
 	@Override
@@ -23,7 +27,7 @@ public class KJVBibleDAO extends AbstractBibleDAO {
 			String bookName = (!abbr.equals("so"))?AbbreviationHashTable.retrieveBookName(abbr):"Song of Solomon";
 			String bookFileName = bookName.replace(" ", "")+".txt";
 			String bookFilePath = booksFolder + bookFileName;
-			System.out.println("===="+bookName+"====");
+			//System.out.println("===="+bookName+"====");
 			try {
 				BibleBook book = parser.parseBook(bookFilePath, abbr);
 				bibleBookHashTable.put(abbr, book);
@@ -36,7 +40,8 @@ public class KJVBibleDAO extends AbstractBibleDAO {
 
 	
 	public static void main(String[] args) {
-		KJVBibleDAO kjvBible = new KJVBibleDAO();
+		String booksFolder = (args.length==1)?args[0]:"";
+		KJVBibleDAO kjvBible = new KJVBibleDAO(booksFolder);
 		System.out.println(kjvBible.getBook("ge").getChapter(1).getVerse(1).getPassage());
 	}
 }
