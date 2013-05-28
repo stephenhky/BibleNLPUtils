@@ -38,6 +38,12 @@ public class VerseReference {
 	}
 	
 	public String getText(AbstractBibleDAO bibleDAO) {
-		return bibleDAO.getBook(bibleBookAbbr).getChapter(chapter).getVerse(verse).getPassage();
+		String scripture = "";
+		try {
+			scripture = bibleDAO.getBook(bibleBookAbbr).getChapter(chapter).getVerse(verse).getPassage();
+		} catch (IndexOutOfBoundsException e) {
+			scripture = "--";
+		}
+		return scripture;
 	}
 }

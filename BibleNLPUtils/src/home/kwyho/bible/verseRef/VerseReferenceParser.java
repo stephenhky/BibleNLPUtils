@@ -14,14 +14,18 @@ public class VerseReferenceParser {
 		String[] tokens = verseRef.split(" ");
 		
 		String bookAbbr = tokens[0];
-		Integer chapter = Integer.parseInt(tokens[1]);
-		Integer verse = Integer.parseInt(tokens[2]);
-		
-		if (AbbreviationHashTable.retrieveBookName(bookAbbr) != null) {
-			return new VerseReference(bookAbbr, chapter, verse);
+		try {
+			Integer chapter = Integer.parseInt(tokens[1]);
+			Integer verse = Integer.parseInt(tokens[2]);
+			
+			if (AbbreviationHashTable.retrieveBookName(bookAbbr) != null) {
+				return new VerseReference(bookAbbr, chapter, verse);
+			}
+		} catch (NumberFormatException e) {
+			return new VerseReference("jn", 0, 0);
 		}
 		
-		return null;
+		return new VerseReference("jn", 0, 0);
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
