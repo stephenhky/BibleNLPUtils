@@ -1,9 +1,14 @@
 package home.kwyho.bible.data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BibleChapter {
+public class BibleChapter implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7115822366619473208L;
 	private List<BibleVerse> verses;
 	
 	public BibleChapter() {

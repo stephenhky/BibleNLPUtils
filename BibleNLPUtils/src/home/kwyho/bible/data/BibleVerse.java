@@ -1,6 +1,12 @@
 package home.kwyho.bible.data;
 
-public class BibleVerse {
+import java.io.Serializable;
+
+public class BibleVerse implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 627832917716483467L;
 	private int verseIdx;
 	private String passage;
 	
