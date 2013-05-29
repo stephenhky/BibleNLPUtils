@@ -1,5 +1,6 @@
 package home.kwyho.bible.verseRef;
 
+import home.kwyho.bible.data.AbbreviationHashTable;
 import home.kwyho.bible.data.AbstractBibleDAO;
 
 public class VerseReference {
@@ -45,5 +46,11 @@ public class VerseReference {
 			scripture = "--";
 		}
 		return scripture;
+	}
+	
+	public String getTextWithRef(AbstractBibleDAO bibleDAO) {
+		String displayTxt = AbbreviationHashTable.retrieveBookName(bibleBookAbbr)+" "+chapter+":"+verse+"  ";
+		displayTxt += getText(bibleDAO);
+		return displayTxt;
 	}
 }
