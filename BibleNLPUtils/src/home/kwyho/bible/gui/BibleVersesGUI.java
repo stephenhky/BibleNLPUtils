@@ -170,6 +170,7 @@ public class BibleVersesGUI extends javax.swing.JFrame {
 				jQuitButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent evt) {
 						System.out.println("jQuitButton.actionPerformed, event="+evt);
+						
 						dispose();
 					}
 				});
