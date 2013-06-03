@@ -56,6 +56,7 @@ public abstract class AbstractBibleDAO {
 		String filename = translationAbbreviation+"Bible.zip";
 		File inFile = new File(filename);
 		ObjectInputStream ois = new ObjectInputStream(new GZIPInputStream(new FileInputStream(inFile)));
+		//ObjectInputStream ois = new ObjectInputStream(new GZIPInputStream(AbstractBibleDAO.class.getClassLoader().getResourceAsStream(filename)));
 		bibleBookHashTable = (HashMap<String, BibleBook>) ois.readObject();
 		ois.close();
 	}
