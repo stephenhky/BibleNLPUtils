@@ -57,7 +57,7 @@ public class KJVBibleBookParser implements BibleBookParser {
 				if (verseNo > verseIdx) {
 					verseIdx = verseNo;
 				}
-				String passage = trimmedLine.substring(firstSpacePos).trim();
+				String passage = trimmedLine.substring(firstSpacePos).replaceAll("[^a-zA-Z1-9\\s\\p{Punct}]", "").trim();
 				chapter.getVerses().add(new BibleVerse(verseIdx, passage));
 				//System.out.println(abbr+" "+chapterIdx+" : "+verseIdx+" : "+passage);
 			}
